@@ -4,7 +4,7 @@ Feature: Update an invalid product
   Scenario Outline: Update invalid product Id
     Given the path "<path>" to the endpoint
     When I perform the PUT request with invalid id and BrandName as "<brandName>", Features as "<feature>", LaptopName as "<laptopName>"
-    Then the status code "<statusCode>" should return
+    Then the status code "<statusCode>" should be returned
     And No response data returns
     Examples:
       | path   | brandName | feature                                      | laptopName | statusCode |

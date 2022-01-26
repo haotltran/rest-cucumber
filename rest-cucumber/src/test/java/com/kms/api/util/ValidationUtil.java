@@ -23,16 +23,6 @@ public class ValidationUtil {
   }
 
   /**
-   * Http status code validation
-   *
-   * @param actualCode Http response is returned after sending a request to specific service
-   * @param expectedStatusCode any http status code that is returned expectation
-   */
-  public static void validateStatusCode(int actualCode, int expectedStatusCode) {
-    Assert.assertEquals(actualCode, expectedStatusCode);
-  }
-
-  /**
    * Convert Pojo objects to Json string and compare them for the validation
    *
    * @param expectedObject The object is expected

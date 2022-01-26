@@ -10,6 +10,7 @@ import com.kms.api.util.ValidationUtil;
 import io.cucumber.java.After;
 import io.cucumber.java.en.*;
 import io.restassured.response.Response;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -49,10 +50,7 @@ public class AddProductSteps extends TestBase {
 
   @Then("^the status code \"([^\"]*)\" should return$")
   public void theStatusCodeShouldReturn(String statusCode) {
-    if (!res.thenReturn().getBody().asString().isEmpty())
       ValidationUtil.validateStatusCode(res, Integer.parseInt(statusCode));
-    else
-      ValidationUtil.validateStatusCode(res.thenReturn().getStatusCode(), Integer.parseInt(statusCode));
   }
 
   @And("^the product is added successfully with an integer Id$")

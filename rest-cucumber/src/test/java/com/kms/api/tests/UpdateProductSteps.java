@@ -5,14 +5,10 @@ import com.kms.api.requests.RequestFactory;
 import com.kms.api.util.RequestBuilder;
 import com.kms.api.util.ValidationUtil;
 import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.tika.parser.EmptyParser;
-import org.junit.AfterClass;
-import org.picocontainer.containers.EmptyPicoContainer;
 
 import java.util.*;
 
@@ -61,14 +57,18 @@ public class UpdateProductSteps extends TestBase{
             resUpdateLaptop = mapRestResponseToPojo(res, LaptopBag.class);
         }
         catch (Exception ex){
-            System.out.println(res.getStatusLine());
-            System.out.println(res.getBody().asString());
+            System.out.println("The response body return null");
         }
+    }
+
+    @Then("^the status code \"([^\"]*)\" should be returned$")
+    public void theStatusCodeShouldBeReturned(String statusCode) {
+        ValidationUtil.validateStatusCode(res, Integer.parseInt(statusCode));
     }
 
     @And("^No response data returns$")
     public void noResponseDataReturns() {
-        ValidationUtil.validateStringEqual(res.thenReturn().getBody().asString(), null);
+        ValidationUtil.validateStringEqual("", res.thenReturn().getBody().asString());
     }
 
     @After ("@update")
